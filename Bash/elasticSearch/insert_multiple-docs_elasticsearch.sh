@@ -1,5 +1,11 @@
 #!/bin/bash
 
+: '
+This is a basic bash script that post multiple docs in ElasicSearch Index.
+First it ask you the number of docs you want to post. 
+Then it generates that number of docs and post them in index.
+Docs contains machine(where this script is ran) ip address, hostname, random_genrated_string, random_generated_integer.
+'
 
 host_addr=$(hostname -I | awk '{print $1}') #Host IP Address
 host_name=$HOSTNAME #Hostname
