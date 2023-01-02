@@ -1,10 +1,11 @@
 #!/bin/bash
 
 #Description: This script checks instance existance status and prints its state.
-#Step1: Create "inst.list" file and list the instanceIDs that you want to check.
-#Step2: Run the script!!
+#Add your instanceId in "instArray" with given format and run the script.
 
-for i in $(cat inst.list)
+instArray=("i-0XXXXXXXXXX3c7e" "i-07XXXXXXXXX9d65" "i-079XXXXXXXXXe0b" "i-07aXXXXXXXXX21")
+
+for i in ${instArray[@]};
     do
         output=$(aws ec2 describe-instances --instance-ids $i --query 'Reservations[].Instances[].[State.Name]' --output text 2>/dev/null)
         if [ $? -eq 0 ];
@@ -16,6 +17,6 @@ for i in $(cat inst.list)
                         echo $i, $output
                 fi
             else
-                echo "Something went wrong or $i does not exist"
+                echo $i, "Terminated/NotFound"
         fi
     done
