@@ -16,6 +16,6 @@ for i in $(cat inst.list)
                         echo $i, $output
                 fi
             else
-                echo "Something went worng or $i does not exist"
+                echo "Something went wrong or $i does not exist"
         fi
     done
